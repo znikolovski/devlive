@@ -3,7 +3,7 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 async function loadIndex() {
   const indexResponse = await fetch('/query-index.json');
   if (!indexResponse.ok) {
-    return;
+    return null;
   }
 
   return indexResponse;
@@ -20,7 +20,7 @@ export default async function decorate(block) {
   index.data
     .forEach((post) => {
       if (post.type !== category) {
-       return;
+        return;
       }
       if (!post.featured) {
         const li = document.createElement('li');
